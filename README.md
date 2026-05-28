@@ -1,8 +1,8 @@
 # dz-agent-project
 
-> إنشأ موقف مطعم
+> موقع حجز مواعيد للمسافرين
 
-**نوع التصميم:** restaurant
+**نوع التصميم:** landing
 
 تم الإنشاء تلقائياً بواسطة [DZ Agent](https://dz-gpt.vercel.app) 🤖
 
