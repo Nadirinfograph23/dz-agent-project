@@ -1,46 +1,164 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>إنشأ موقف مطعم</title>
-  <meta name="description" content="إنشأ موقف مطعم — أُنشئ بواسطة DZ Agent">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-    :root{--primary:#6366f1;--accent:#a855f7;--bg:#0a0a0f;--surface:#111118;}
-    *{font-family:'Inter',sans-serif;box-sizing:border-box;}
-    body{background:var(--bg);color:#f1f5f9;margin:0;}
-    .gradient-text{background:linear-gradient(135deg,#fff 0%,var(--primary) 50%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .glass-card{background:rgba(255,255,255,0.03);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;transition:all .3s ease;}
-    .glass-card:hover{background:rgba(255,255,255,0.06);transform:translateY(-4px);}
-    .btn-glow{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50px;padding:14px 32px;font-weight:700;color:#fff;border:none;cursor:pointer;transition:all .3s;box-shadow:0 4px 24px rgba(99,102,241,.4);}
-    .btn-glow:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(99,102,241,.6);}
-    .mesh-hero{background:radial-gradient(ellipse 80% 60% at 20% 40%,rgba(99,102,241,.25) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 60%,rgba(168,85,247,.15) 0%,transparent 60%),var(--bg);}
-    nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px);background:rgba(10,10,15,.8);border-bottom:1px solid rgba(255,255,255,.06);}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع حجز مواعيد للمسافرين</title>
+    <meta name="description" content="موقع حجز مواعيد للمسافرين">
+    <meta property="og:title" content="موقع حجز مواعيد للمسافرين">
+    <meta property="og:description" content="موقع حجز مواعيد للمسافرين">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #06b6d4;
+            --accent: #f1c40f;
+            --bg: #09090b;
+            --surface: #0f0f17;
+            --surface2: #14141a;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --shadow-glow: 0 0 40px rgba(var(--primary-rgb),0.2);
+            --shadow-card: 0 25px 50px -12px rgba(0,0,0,0.4);
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 200px;
+            gap: 16px;
+        }
+        .bento-tall   { grid-row: span 2; }
+        .bento-wide   { grid-column: span 2; }
+        .bento-large  { grid-column: span 2; grid-row: span 2; }
+        @media (max-width: 768px) { 
+            .bento-grid { grid-template-columns: 1fr; } 
+            .bento-tall,.bento-wide,.bento-large { grid-column: 1; grid-row: span 1; } 
+        }
+
+        .mesh-hero {
+            background: radial-gradient(ellipse 80% 60% at 20% 40%, rgba(var(--primary-rgb),0.25) 0%, transparent 60%),
+                        radial-gradient(ellipse 60% 80% at 80% 60%, rgba(var(--accent-rgb),0.15) 0%, transparent 60%),
+                        var(--bg);
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50px; padding: 14px 32px; font-weight: 700; color: #fff;
+            border: none; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 4px 24px rgba(var(--primary-rgb),0.4);
+        }
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(var(--primary-rgb),0.6); }
+
+        .animate-on-scroll { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+        .animate-on-scroll.visible { opacity:1; transform:translateY(0); }
+    </style>
 </head>
 <body>
-  <nav class="px-8 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold gradient-text">إنشأ موقف مطعم</div>
-    <button class="btn-glow text-sm px-6 py-2">ابدأ الآن</button>
-  </nav>
-  <section class="mesh-hero min-h-screen flex flex-col items-center justify-center text-center px-6 py-20">
-    <img src="https://images.unsplash.com/photo-1414235077-eefff0f14b66?w=800&auto=format&fit=crop&q=80" alt="hero" class="w-full max-w-2xl rounded-2xl mb-10 shadow-2xl object-cover" style="max-height:400px;" onerror="this.style.display='none'">
-    <div class="text-sm font-semibold text-indigo-400 tracking-widest mb-4 uppercase">أُنشئ بواسطة DZ Agent 🤖</div>
-    <h1 class="text-5xl md:text-7xl font-black mb-6 gradient-text leading-tight">إنشأ موقف مطعم</h1>
-    <p class="text-slate-400 text-xl max-w-xl mb-10">منصة متكاملة وعصرية — مصمّمة بأحدث تقنيات 2026</p>
-    <div class="flex gap-4 flex-wrap justify-center">
-      <button class="btn-glow">اكتشف المزيد <i class="fa fa-arrow-left mr-2"></i></button>
-      <button class="glass-card px-8 py-4 font-semibold">تواصل معنا</button>
-    </div>
-  </section>
-  <footer class="text-center py-8 text-slate-500 text-sm border-t border-white/5">
-    © <span id="yr"></span> — إنشأ موقف مطعم — تطوير DZ Agent 🇩🇿
-  </footer>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init({duration:700,once:true});document.getElementById('yr').textContent=new Date().getFullYear();</script>
+    <nav class="bg-transparent py-4 fixed top-0 left-0 w-full z-50" id="nav">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text">موقع حجز مواعيد للمسافرين</a>
+            <ul class="nav-links flex items-center gap-6">
+                <li><a href="#features" class="nav-link">الخدمات</a></li>
+                <li><a href="#about" class="nav-link">عن الموقع</a></li>
+                <li><a href="#contact" class="nav-link">اتصل بنا</a></li>
+            </ul>
+            <button class="btn-glow">حجز موعد</button>
+            <button class="hamburger flex justify-center w-10 h-10 bg-gray-700 rounded-full">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero mesh-hero h-screen relative">
+        <div class="container mx-auto flex flex-col items-center justify-center h-full">
+            <h1 class="text-5xl font-bold gradient-text animate-on-scroll" data-aos="fade-in">موقع حجز مواعيد للمسافرين</h1>
+            <p class:////////////.text-2xl text-gray-400 mb-6 animate-on-scroll" data-aos="fade-in">حجز مواعيد السفر بسهولة وسرعة</p>
+            <div class="flex gap-4 animate-on-scroll" data-aos="fade-in">
+                <button class="btn-glow">حجز موعد</button>
+                <button class="btn-glow outline">المزيد من المعلومات</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-12 bg-[var(--bg)]">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold gradient-text mb-6">الخدمات</h2>
+            <div class="bento-grid gap-6">
+                <div class="glass-card p-6">
+                    <i class="fa-solid fa-plane text-2xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">حجز الطيران</h3>
+                    <p class="text-gray-400">حجز طيران بسهولة وسرعة</p>
+                </div>
+                <div class="glass-card p-6 bento-tall">
+                    <i class="fa-solid fa-hotel text-2xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">حجز الفنادق</h3>
+                    <p class="text-gray-400">حجز فنادق بسهولة وسرعة</p>
+                </div>
+                <div class="glass-card p-6">
+                    <i class="fa-solid fa-car text-2xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">استئجار السيارات</h3>
+                    <p class="text-gray-400">استئجار سيارات بسهولة وسرعة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-12 bg-[var(--surface)]">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold gradient-text mb-6">عن الموقع</h2>
+            <p class="text-gray-400 text-xl">موقع حجز مواعيد للمسافرين هو موقع يتيح لك حجز مواعيد السفر بسهولة وسرعة</p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-12 bg-[var(--bg)]">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold gradient-text mb-6">اتصل بنا</h2>
+            <form>
+                <input type="email" placeholder="البريد الإلكتروني" class="w-full p-4 mb-4 bg-gray-700 rounded">
+                <button class="btn-glow">ارسال</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-[var(--surface)] text-center">
+        <p class="text-gray-400">&copy; <span id="cr-year"></span> موقع حجز مواعيد للمسافرين</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll',()=>{ document.querySelector('nav').classList.toggle('scrolled',window.scrollY>50) })
+        document.querySelector('.hamburger')?.addEventListener('click',()=>{ document.querySelector('.nav-links').classList.toggle('open') })
+        AOS.init({ duration:700, easing:'ease-out-cubic', once:true, offset:60 })
+        const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12})
+        document.querySelectorAll('.animate-on-scroll').forEach(el=>obs.observe(el))
+        document.getElementById('cr-year').textContent = new Date().getFullYear()
+    </script>
 </body>
 </html>
