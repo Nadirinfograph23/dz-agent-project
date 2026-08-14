@@ -1,10 +1,10 @@
 # dz-agent-project
 
-> أنشئ متجر إلكتروني للملابس
+> أنشئ موقع مطعم جزائري احترافي
 
-**نوع التصميم:** store
+**نوع التصميم:** restaurant
 
-تم الإنشاء تلقائياً بواسطة [DZ Agent](https://dz-gpt.vercel.app) 🤖
+تم الإنشاء تلقائياً بواسطة [DZ Agent](https://dzagent.app) 🤖
 
 ## 🌐 عرض مباشر
 https://Nadirinfograph23.github.io/dz-agent-project
