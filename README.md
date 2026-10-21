@@ -4,7 +4,7 @@
 
 **نوع التصميم:** restaurant
 
-تم الإنشاء تلقائياً بواسطة [DZ Agent](https://dzagent.app) 🤖
+تم الإنشاء تلقائياً بواسطة [DZ Agent](https://dz-gpt.vercel.app) 🤖
 
 ## 🌐 عرض مباشر
 https://Nadirinfograph23.github.io/dz-agent-project
